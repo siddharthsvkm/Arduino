@@ -1,0 +1,44 @@
+int redPin = 9;
+int greenPin = 6;
+int bluePin = 3;
+int voltPin1 = A4;
+int voltPin2 = A9;
+
+float brightness1 = 0;
+int tenBitNum1 = 0;
+float brightness2 = 0;
+int tenBitNum2 = 0;
+float brightness3 = 0;
+int tenBitNum3 = 0;
+int delayTime = 550;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  pinMode(bluePin, OUTPUT);
+  pinMode(voltPin1, INPUT);
+  pinMode(voltPin2, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  tenBitNum1 = analogRead(voltPin1);
+  tenBitNum2 = analogRead(voltPin2);
+  tenBitNum3 = tenBitNum1;
+  brightness1 = (255.0/1023.0) * tenBitNum1;
+  brightness2 = (255.0/1023.0) * tenBitNum2;
+  brightness3 = (255.0/1023.0) * tenBitNum3;
+  analogWrite(redPin, brightness1);
+  analogWrite(greenPin, brightness2);
+  analogWrite(bluePin, brightness3);
+
+  Serial.print("Red is ");
+  Serial.print(brightness1);
+  Serial.print(", Green is ");
+  Serial.print(brightness2);
+  Serial.print(", Blue is ");
+  Serial.println(brightness3);
+  delay(delayTime);
+}
