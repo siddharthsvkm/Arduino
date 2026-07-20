@@ -13,7 +13,6 @@ int tenBitNum3 = 0;
 int delayTime = 550;
 
 void setup() {
-  // put your setup code here, to run once:
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
   pinMode(bluePin, OUTPUT);
@@ -23,7 +22,6 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   tenBitNum1 = analogRead(voltPin1);
   tenBitNum2 = analogRead(voltPin2);
   tenBitNum3 = tenBitNum1;
