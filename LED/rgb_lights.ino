@@ -4,7 +4,6 @@ int blueLight = 2;
 int delayTime = 700;
 
 void setup() {
-  // put your setup code here, to run once:
   pinMode(redLight, OUTPUT);
   pinMode(greenLight, OUTPUT);
   pinMode(blueLight, OUTPUT);
@@ -12,7 +11,6 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   digitalWrite(redLight, HIGH);
   delay(delayTime);
   digitalWrite(greenLight, HIGH);
