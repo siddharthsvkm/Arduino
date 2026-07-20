@@ -4,41 +4,54 @@ int bluePin = 3;
 int voltPin1 = A4;
 int voltPin2 = A9;
 
-float brightness1 = 0;
-int tenBitNum1 = 0;
-float brightness2 = 0;
-int tenBitNum2 = 0;
-float brightness3 = 0;
-int tenBitNum3 = 0;
-int delayTime = 550;
+float redBrightness = 0;
+float greenBrightness = 0;
+float blueBrightness = 0;
+int delayTime = 1050;
+
+
+int calculateBrightness(int analogPin1, int analogPin2, int voltPin) {
+  int tenBitNum;
+  float brightness;
+  if (voltPin==1) {
+    tenBitNum = analogRead(analogPin1);
+  } 
+  else if (voltPin==2) {
+    tenBitNum = analogRead(analogPin2);
+  } 
+  else {
+    tenBitNum = (analogRead(analogPin1) + analogRead(analogPin2))/2;
+    
+  }
+  brightness = (255.0/1023.0) * tenBitNum;
+
+  return brightness;
+}
 
 void setup() {
-  // put your setup code here, to run once:
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
   pinMode(bluePin, OUTPUT);
+
   pinMode(voltPin1, INPUT);
   pinMode(voltPin2, INPUT);
+
   Serial.begin(9600);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  tenBitNum1 = analogRead(voltPin1);
-  tenBitNum2 = analogRead(voltPin2);
-  tenBitNum3 = tenBitNum1;
-  brightness1 = (255.0/1023.0) * tenBitNum1;
-  brightness2 = (255.0/1023.0) * tenBitNum2;
-  brightness3 = (255.0/1023.0) * tenBitNum3;
-  analogWrite(redPin, brightness1);
-  analogWrite(greenPin, brightness2);
-  analogWrite(bluePin, brightness3);
+  redBrightness = calculateBrightness(voltPin1, voltPin2, 1);
+  greenBrightness = calculateBrightness(voltPin1, voltPin2, 2);
+  blueBrightness = calculateBrightness(voltPin1, voltPin2, 3);
+  analogWrite(redPin, redBrightness);
+  analogWrite(greenPin, greenBrightness);
+  analogWrite(bluePin, blueBrightness);
 
   Serial.print("Red is ");
-  Serial.print(brightness1);
+  Serial.print(redBrightness);
   Serial.print(", Green is ");
-  Serial.print(brightness2);
+  Serial.print(greenBrightness);
   Serial.print(", Blue is ");
-  Serial.println(brightness3);
+  Serial.println(blueBrightness);
   delay(delayTime);
 }
