@@ -1,3 +1,8 @@
+// Siddharth Sivakumar
+// July 19, 2026
+// Arduino MEGA
+// The purpose of this program
+
 #include <Servo.h>
 Servo myServo;
 
