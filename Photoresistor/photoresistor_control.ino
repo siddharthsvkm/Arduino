@@ -1,3 +1,8 @@
+// Siddharth Sivakumar
+// July 1, 2026
+// Arduino MEGA
+// The purpose of this program
+
 int redLight = 9;
 int greenPin = 6;
 int voltagePin = A9;
