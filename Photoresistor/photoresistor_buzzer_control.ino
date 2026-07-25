@@ -1,3 +1,8 @@
+// Siddharth Sivakumar
+// July 1, 2026
+// Arduino MEGA
+// The purpose of this program
+
 int voltPin = A4;
 int buzzPin = 9;
 
