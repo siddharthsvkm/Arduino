@@ -1,3 +1,8 @@
+// Siddharth Sivakumar
+// June 28, 2026
+// Arduino MEGA
+// The purpose of this program
+
 int readPin = A2;
 int lightPin = 3;
 
