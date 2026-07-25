@@ -1,3 +1,8 @@
+// Siddharth Sivakumar
+// June 25, 2026
+// Arduino MEGA
+// The purpose of this program
+
 int redPin = 9;
 int greenPin = 6;
 int bluePin = 3;
