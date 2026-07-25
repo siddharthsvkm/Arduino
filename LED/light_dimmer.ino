@@ -1,3 +1,8 @@
+// Siddharth Sivakumar
+// June 29, 2026
+// Arduino MEGA
+// The purpose of this program
+
 int voltagePin = A2;
 int lightPin = 9;
 
@@ -10,7 +15,6 @@ void setup() {
   pinMode(voltagePin, INPUT);
   pinMode(lightPin, OUTPUT);
   Serial.begin(9600);
-
 }
 
 void loop() {
