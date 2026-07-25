@@ -1,3 +1,8 @@
+// Siddharth Sivakumar
+// June 25, 2026
+// Arduino MEGA
+// The purpose of this program
+
 int redLight = 4;
 int greenLight = 3;
 int blueLight = 2;
