@@ -4,20 +4,22 @@ This repository contains projects developed using Arduino IDE. Arduino is a hard
 My projects are sorted by the main component that I was learning to use at that point of time or cumulative projects designed with all the components in mind.
 
 Components:
-- Arduino MEGA controller board
+- Arduino MEGA Controller Board
 - Breadboard
-- Breadboard wires
+- Jumper Wires
 - Resistors
 - LEDS
-- Buzzers
+- Buzzers (Active/Passive)
+- Potentiometer
 - Photoresistors
 - Buttons
-- Servo motor
-- Capacitators
+- Servo Motor
 - Switches
-- LCD module
+- LCD Module
 - Joystick
-- Sound sensor
-- Ultrasonic sensor
-- Water level detection sensor
-- Digit display
+- Sound Sensor
+- Capacitators
+- Dot Matrix
+- Ultrasonic Sensor
+- Water Level Detection Sensor
+- Digit Display
