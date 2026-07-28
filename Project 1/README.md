@@ -18,4 +18,5 @@ This project uses a joystick to control a virtual position and a set of LEDs on 
 - 37x Jumper Wires
 
 ## Reflection
-I tried to reduce the number of conditional statements in my code by creating arrays and using mathematical equations to access the elements, instead of using a conditional statement and assigning values to variables within the conditional. This goal was hard to implement because coming up with the equations was actually quite difficult for me, since I wasn't used to and familiar with creating mathematical functions with an input and an expected output.
+I tried to reduce the number of conditional statements in my code by creating arrays and using mathematical equations to access the elements, instead of using a conditional statement and assigning values to variables within the conditional. This goal was hard to implement because coming up with the equations was actually quite difficult for me, since I wasn't used to and familiar with creating mathematical functions with an input and an expected output.       
+I think that I need to implement more abstraction by creating more functions and leaving as little statements/code within the loop() function.
