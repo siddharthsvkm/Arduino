@@ -23,3 +23,9 @@ Components:
 - Ultrasonic Sensor
 - Water Level Detection Sensor
 - Digit Display
+
+|||Date|
+|---|---|---|
+|Project 1|Rock, Paper, Scissors Game|July 25, 2026|
+|Project 2|Joystick Position/LED Control|July 27, 2026|
+|Project 3||
