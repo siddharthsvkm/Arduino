@@ -24,8 +24,9 @@ Components:
 - Water Level Detection Sensor
 - Digit Display
 
-|||Date|
+
+||Project Name|Date|
 |:---|:---|:---|
-|Project 1|Rock, Paper, Scissors Game|July 25, 2026|
+|Project 1|Smart Rock, Paper, Scissors Game|July 25, 2026|
 |Project 2|Joystick Position/LED Control|July 27, 2026|
 |Project 3|Interactive Safe Lock Simulator|August 10, 2026|
