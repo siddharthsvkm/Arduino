@@ -33,7 +33,6 @@ void setup() {
   myServo.write(90);
   myLCD.begin(16,2);
   printLCD("Digital SafeLock", "Simulator", 1000);
-  printLCD("Enter SafeLock", "4-Digit PIN", 1000);
   enterPin(true, true);
 }
 
