@@ -25,8 +25,9 @@ Components:
 - Digit Display
 
 
-||Project Name|Date|
-|:---|:---|:---|
-|Project 1|Smart Rock, Paper, Scissors Game|July 25, 2026|
-|Project 2|Joystick Position/LED Control|July 27, 2026|
-|Project 3|Interactive Safe Lock Simulator|August 10, 2026|
+||Project Name|Date Start||Date End|Status|
+|:---|:---|:---|:---|
+|Project 1|Smart Rock, Paper, Scissors Game|July 12, 2026||
+|Project 2|Joystick Position/LED Control|July 23, 2026|July 27, 2026|
+|Project 3|Interactive Safe Lock Simulator|July 8, 2026|August 10, 2026|
+|Project 4|Escape Room|August 10, 2026|
