@@ -1,7 +1,13 @@
 # Joystick Position and LED Controller
-Siddharth Sivakumar (siddharthsvkm)
+Siddharth Sivakumar (@siddharthsvkm)
+
 July 27, 2026
+
 Emulated using Wokwi
+
+[Project Link](https://wokwi.com/projects/470641626263352321)
+
+Project URL: https://wokwi.com/projects/470641626263352321
 
 ## Summary
 This project uses a joystick to control a virtual position and a set of LEDs on the breadboard. The virtual position uses xy coordinates (x,y) and increases/decreases infinitely. When the joystick is pushed towards a relative/spatial direction, the corresponding LED light is turned on. In the instance where the joystick is pushed in two directions (e.g. left and down), the two RGB LEDs, towards the top of the breadboard, light up with the combined color made from mixing the colors of the LED, as well as the two LED lights (in their color) corresponding to those directions.
