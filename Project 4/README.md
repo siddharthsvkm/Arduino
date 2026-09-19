@@ -1,6 +1,10 @@
 # Escape Room
-Escape Room is my project that holds a series of interactive puzzles, or rooms, to solve to reach the end of th challenge.
-
+Escape Room is my project that holds a series of interactive puzzles, or rooms, that need to be solved to reach the end of this challenge. At the end of this challenge lies a surprise. Escape Room currently has 1 puzzle with 4 more in mind.
+Puzzle 1 -
+Puzzle 2 - 
+Puzzle 3 - 
+Puzzle 4 - 
+Puzzle 5 - 
 
 [Project Link](https://wokwi.com/projects/470846474007212033)
 
@@ -20,7 +24,7 @@ This project uses
 - 1x RTC Module
 - 3x 220Ω Resistors
 - 1x 10kΩ Resistor
-- 37x Jumper Wires
+- 35x Jumper Wires
 
 ## Reflection
 
