@@ -11,7 +11,7 @@ Emulated using Wokwi
 Project URL: https://wokwi.com/projects/470832657989922817
 
 ## Summary
-This project uses 
+Digital SafeLock Simulator is an interactive safe that mimics the functionality of a real safe without the physical mechanism and box. 
 
 ## Used Components:
 - 1x MEGA Controller Board
