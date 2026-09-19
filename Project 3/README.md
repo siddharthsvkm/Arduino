@@ -15,13 +15,14 @@ This project uses
 
 ## Used Components:
 - 1x MEGA Controller Board
-- 1x Joystick
+- 1x Keypad
 - 1x LCD (16x2)
-- 2x RGB LED
-- 4x LED (Purple, Red, Blue, Green)
-- 1x Potentiometer
-- 10x 220Ω Resistors
+- 1x RGB LED
+- 1x Servo
+- 1x Buzzer
+- 1x RTC Module
+- 3x 220Ω Resistors
 - 1x 10kΩ Resistor
-- 37x Jumper Wires
+- 35x Jumper Wires
 
 ## Reflection
