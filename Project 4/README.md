@@ -1,6 +1,8 @@
 # Escape Room
 Escape Room is my project that holds a series of interactive puzzles, or rooms, that need to be solved to reach the end of this challenge. At the end of this challenge lies a surprise. Escape Room currently has 1 puzzle with 4 more in mind. I had to be creative using the Arduino components to create a puzzle.
 
+
+
 Puzzles:
 
 Puzzle 1 - Memory Test 
@@ -12,6 +14,7 @@ Puzzle 3 -
 Puzzle 4 - 
 
 Puzzle 5 - 
+
 
 
 Project URL: https://wokwi.com/projects/470846474007212033
