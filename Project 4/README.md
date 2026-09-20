@@ -11,8 +11,6 @@ Puzzle 4 -
 
 Puzzle 5 - 
 
-[Project Link](https://wokwi.com/projects/470846474007212033)
-
 
 Project URL: https://wokwi.com/projects/470846474007212033
 
