@@ -1,6 +1,7 @@
 # Escape Room
-Escape Room is my project that holds a series of interactive puzzles, or rooms, that need to be solved to reach the end of this challenge. At the end of this challenge lies a surprise. Escape Room currently has 1 puzzle with 4 more in mind.
-Puzzle 1 -
+Escape Room is my project that holds a series of interactive puzzles, or rooms, that need to be solved to reach the end of this challenge. At the end of this challenge lies a surprise. Escape Room currently has 1 puzzle with 4 more in mind. I had to be creative using the Arduino components to create a puzzle.
+
+Puzzle 1 - Memory Test 
 Puzzle 2 - 
 Puzzle 3 - 
 Puzzle 4 - 
@@ -18,13 +19,13 @@ This project uses
 - 1x MEGA Controller Board
 - 1x Keypad
 - 1x LCD (16x2)
-- 1x RGB LED
+- 4x RGB LEDs (red, green, blue, yellow)
 - 1x Servo
 - 1x Buzzer
-- 1x RTC Module
+- 1x Photoresistor Sensore
 - 3x 220Ω Resistors
 - 1x 10kΩ Resistor
-- 35x Jumper Wires
+- 50x Jumper Wires
 
 ## Reflection
 
