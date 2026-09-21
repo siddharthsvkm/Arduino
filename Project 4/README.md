@@ -1,4 +1,5 @@
 # Escape Room
+## Summary
 Escape Room is my project that holds a series of interactive puzzles, or rooms, that need to be solved to reach the end of this challenge. At the end of this challenge lies a surprise. Escape Room currently has 1 puzzle with 4 more in mind. I had to be creative using the Arduino components to create a puzzle.
 
 
@@ -19,8 +20,8 @@ Puzzle 5 -
 
 Project URL: https://wokwi.com/projects/470846474007212033
 
-## Summary
-This project uses
+
+
 
 ## Used Components:
 - 1x MEGA Controller Board
@@ -35,6 +36,7 @@ This project uses
 - 50x Jumper Wires
 
 ## Reflection
+I had to think about how I would structure my program. I decided to separate each puzzle into its own function. In the loop() function, I would put each of the puzzles, meaning that the loop() function would keep repeating if one or more puzzles wasn't complete.
 
 |Progress|Date|
 |:---|:---|
