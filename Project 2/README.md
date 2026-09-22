@@ -5,8 +5,6 @@ July 27, 2026
 
 Emulated using Wokwi
 
-[Project Link](https://wokwi.com/projects/470641626263352321)
-
 Project URL: https://wokwi.com/projects/470641626263352321
 
 ## Summary
