@@ -1,3 +1,9 @@
+// Siddharth Sivakumar
+// July 20, 2026
+// Arduino Mega
+/* The purpose of this program is to use a joystick 
+to control the current position without a limit and 
+output to an LCD display (LCD1602 Module). */
 #include <Servo.h>
 
 int servoPin = 7;
