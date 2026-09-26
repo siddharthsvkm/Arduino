@@ -1,3 +1,10 @@
+// Siddharth Sivakumar
+// August 12, 2026
+// Arduino Mega
+/* The purpose of this program is create and experiment 
+with different colors by manipulating values on the RGB 
+scale from 0-255. I will then record these values to be 
+used in other programs for LED (3-pin) lights. */
 int redPin = 13;
 int greenPin = 12;
 int bluePin = 11;
