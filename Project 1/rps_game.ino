@@ -1,3 +1,8 @@
+// Siddharth Sivakumar
+// July 12, 2026
+// Arduino Mega
+/* The purpose of this program is create */
+
 #include <LiquidCrystal.h>
 
 int switch1 = 13; // Red switch
