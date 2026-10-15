@@ -23,3 +23,4 @@ Digital SafeLock Simulator is an interactive safe that mimics the functionality 
 - 35x Jumper Wires
 
 ## Reflection
+I had trouble completing the functions. I intend to use pointers, but I need to find how to do so.
