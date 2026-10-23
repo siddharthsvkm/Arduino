@@ -93,6 +93,15 @@ void introduction() {
 //   if (printStatement[16] != ' ' ) {}
 // }
 
+void printLCD(String statement1, String statement2) {
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print(statement1);
+  lcd.setCursor(0,1);
+  lcd.print(statement2);
+  delay(6000);
+}
+
 void playGame() {
   lcd.setCursor(0, 0);
   lcd.print("B1=ROCK|B2=PAPER");
