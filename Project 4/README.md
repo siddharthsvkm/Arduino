@@ -8,13 +8,17 @@ Puzzles:
 
 Puzzle 1 - Memory Test 
 
-Puzzle 2 - 
 
-Puzzle 3 - 
+Puzzle 2 - Einstein Logic
 
-Puzzle 4 - 
 
-Puzzle 5 - 
+Puzzle 3 - Hidden Hexadecimal 
+
+
+Puzzle 4 - Switch Logic
+
+
+Puzzle 5 - Sequence Decoder
 
 
 
