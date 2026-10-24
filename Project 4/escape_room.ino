@@ -1,9 +1,15 @@
+// import libraries for external components and modules
 #include <LiquidCrystal.h>
 #include <Keypad.h>
 #include <Servo.h>
 
+// set up servo and lcd display
 Servo myServo;
+int servoPin = 7;
+
 LiquidCrystal lcd(13, 12, 11, 10, 9, 8);
+
+// set up each row and column of keypad
 const uint8_t ROWS = 4;
 const uint8_t COLS = 4;
 char keys[ROWS][COLS] = {
@@ -18,9 +24,8 @@ Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
 
 
-int servoPin = 7;
+
 int buzzerPin = 6;
-int photoresistor = A7;
 int buttonPressed[] = {24, 25, 30, 31};
 int leds[] = {26, 27, 28, 29, 34, 36};
 
@@ -72,7 +77,7 @@ void printLCD(String statement1, String statement2) {
   lcd.print(statement1);
   lcd.setCursor(0,1);
   lcd.print(statement2);
-  delay(6000);
+  delay(3000);
 }
 
 // void completedRoom(int roomStatus, bool ledStatus) {
@@ -84,76 +89,90 @@ void printLCD(String statement1, String statement2) {
 //   }
 // }
 
+int buttonPress(int* buttons, int* ledPins) {
+  int button = -1;
+  while (true) {
+    for (int count = 0; count < 4; count++) {
+      if (digitalRead(buttonPressed[count]) == HIGH) {
+        button = count;
+        digitalWrite(ledPins[button], HIGH);
+        while (digitalRead(buttonPressed[count]) == HIGH) {
+
+        }
+        digitalWrite(ledPins[button], LOW);
+        delay(20);
+        return button;
+      }
+    }
+
+    delay(20);
+  }
+}
+
 void puzzle1(bool* p1Status, int* ledNum, int* buttonPressed) {
   myServo.write(180);
   printLCD("Puzzle 1 -", "Memory Test");
-  printLCD("Follow the", "lights");
+  printLCD("Task - Follow", "the lights");
 
-  int patternNum = 6;
-  int recordedPattern[patternNum];
-  byte randomNum;
-  for (int count = 0; count < patternNum; count++) {
-      randomNum = random() % 4;
-      if (count > 0 && randomNum == recordedPattern[count - 1]) {
-        randomNum = (randomNum + count) % 4;
-      }
-      recordedPattern[count] = randomNum % 4;
-      digitalWrite(ledNum[randomNum], HIGH);
-      delay(600);
-      digitalWrite(ledNum[randomNum], LOW);
-      delay(600);
+  int sequenceLen = 6;
+  int recordedPattern[sequenceLen];
+
+  // generate the button numbers to use
+  for (int count = 0; count < sequenceLen; count++) {
+    if (count < 4) {
+      recordedPattern[count] = count;
+    }
+    else {
+      recordedPattern[count] = random() % 4;
+    }
+  }
+  
+  // shuffles the button numbers to create random order
+  for (int count = sequenceLen - 1; count > 0; count--) {
+    int randomIndex = random() % (count + 1);
+
+    int temp = recordedPattern[count];
+    recordedPattern[count] = recordedPattern[randomIndex];
+    recordedPattern[randomIndex] = temp;
+  }
+
+  // show pattern to user through lights
+  for (int count = 0; count < sequenceLen; count++) {
+    int lightNum = recordedPattern[count];
+    digitalWrite(ledNum[lightNum], HIGH);
+    delay(800);
+    digitalWrite(ledNum[lightNum], LOW);
+    delay(800);
   }
 
   int count = 0;
   int button;
   int pressedCount;
-  printLCD("Turn on the", "lights");
-  while (count < patternNum) {
-    button = -1;
-    pressedCount = 0;
+  printLCD("Repeat the", "light sequence");
+  int wrong = 0;
 
-    for (int i = 0; i < 4; i++) {
-      if (digitalRead(buttonPressed[i]) == HIGH) {
-          button = i;
-          pressedCount += 1;
-      }
+  for (int count = 0; count < sequenceLen; count++) {
+    if (recordedPattern[count] != buttonPress(buttonPressed, ledNum)) {
+      tryAgain(1);
+      return;
     }
-    if (pressedCount > 1) {
-      break;
-    } else if (button == recordedPattern[count]) {
-      while (digitalRead(buttonPressed[button]) == HIGH) {
-        digitalWrite(ledNum[button], HIGH);
-      } 
-      digitalWrite(ledNum[button], LOW);
-      delay(20);
-      count += 1;
-    } else if (button == -1) {
-      delay(15);
-      continue;
-    } else {
-      break;
-    }
+  }
+  *p1Status = true;
+  myServo.write(0);
+  printLCD("Room 1 Completed-", "Memory Test");
 
-  }
-  if(count == patternNum) {
-    *p1Status = true;
-    myServo.write(0);
-    printLCD("Completed Room1-", "Memory Test");
-  } else {
-    tryAgain(1);
-  }
 }
 
-void puzzle2(bool* p1Status) {
+void puzzle2(bool* p2Status) {
   myServo.write(180);
-  printLCD("Puzzle 2 -", "Light Test");
-  printLCD("Room must", "become dark");
+  printLCD("Puzzle 2 -", "Einstein Logic");
+  
+  printLCD("Arrange the", "colored buttons");
+  printLCD("according to", "following saying");
 
-  int brightness;
-  while (brightness > 50) {
-    
-  }
-
+  printLCD("Red is definitely", "not first.");
+  printLCD("Blue is behind", "close green.");
+  printLCD("Yellow is far", "from red.");
 }
 
 
