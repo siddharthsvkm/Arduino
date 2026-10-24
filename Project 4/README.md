@@ -12,13 +12,13 @@ Puzzle 1 - Memory Test
 Puzzle 2 - Einstein Logic
 
 
-Puzzle 3 - Hidden Hexadecimal 
+Puzzle 3 - Hexadecimal Decoder
 
 
 Puzzle 4 - Switch Logic
 
 
-Puzzle 5 - Sequence Decoder
+Puzzle 5 - Sequence Predictor
 
 
 
