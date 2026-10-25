@@ -44,4 +44,9 @@ I had to think about how I would structure my program. I decided to separate eac
 
 |Progress|Date|
 |:---|:---|
+|Fixed Room 1|10/24/2026|
+|Added Room 2|10/24/2026|
+|Finished Room 2|10/25/2026|
 |||
+|||
+
