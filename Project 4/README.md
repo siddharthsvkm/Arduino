@@ -34,9 +34,8 @@ Project URL: https://wokwi.com/projects/470846474007212033
 - 4x RGB LEDs (red, green, blue, yellow)
 - 1x Servo
 - 1x Buzzer
-- 1x Photoresistor Sensore
-- 3x 220Ω Resistors
-- 1x 10kΩ Resistor
+- 4x 220Ω Resistors
+- 4x 10kΩ Resistor
 - 50x Jumper Wires
 
 ## Reflection
