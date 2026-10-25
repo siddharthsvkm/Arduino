@@ -27,7 +27,7 @@ Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
 int buzzerPin = 6;
 int buttonPressed[] = {24, 25, 30, 31};
-int leds[] = {26, 27, 28, 29, 34, 36};
+int leds[] = {26, 27, 28, 29};
 
 bool p1Status = false;
 bool p2Status = false;
@@ -45,7 +45,7 @@ void setup() {
   for (int pressed = 0; pressed < 4; pressed++) {
     pinMode(buttonPressed[pressed], INPUT);
   }
-  for (int led = 0; led < 6; led++) {
+  for (int led = 0; led < 4; led++) {
     pinMode(leds[led], OUTPUT);
   }
 
@@ -57,10 +57,13 @@ void setup() {
 }
 
 void loop() {
+  lightsOff(leds);
   if (!p1Status) {
     puzzle1(&p1Status, leds, buttonPressed);
   }
-  // puzzle2(p2Status);
+  if (!p2Status) {
+    puzzle2(&p2Status, leds, buttonPressed);
+  }
   // puzzle3(p3Status);
   // puzzle4(p4Status);
   // puzzle5(p5Status);
@@ -89,11 +92,18 @@ void printLCD(String statement1, String statement2) {
 //   }
 // }
 
-int buttonPress(int* buttons, int* ledPins) {
+void lightsOff(int* ledPins) {
+  digitalWrite(ledPins[0], LOW);
+  digitalWrite(ledPins[0], LOW);
+  digitalWrite(ledPins[0], LOW);
+  digitalWrite(ledPins[0], LOW);
+}
+
+int buttonPress(int* buttons, int* ledPins, int mode) {
   int button = -1;
   while (true) {
     for (int count = 0; count < 4; count++) {
-      if (digitalRead(buttonPressed[count]) == HIGH) {
+      if (digitalRead(buttonPressed[count]) == HIGH && mode == 1) {
         button = count;
         digitalWrite(ledPins[button], HIGH);
         while (digitalRead(buttonPressed[count]) == HIGH) {
@@ -102,11 +112,15 @@ int buttonPress(int* buttons, int* ledPins) {
         digitalWrite(ledPins[button], LOW);
         delay(20);
         return button;
-      }
+    } else if (digitalRead(buttonPressed[count]) == HIGH && mode == 2) {
+        digitalWrite(ledPins[button], HIGH);
+        delay(20);
+        return button;
     }
 
     delay(20);
   }
+}
 }
 
 void puzzle1(bool* p1Status, int* ledNum, int* buttonPressed) {
@@ -152,7 +166,7 @@ void puzzle1(bool* p1Status, int* ledNum, int* buttonPressed) {
   int wrong = 0;
 
   for (int count = 0; count < sequenceLen; count++) {
-    if (recordedPattern[count] != buttonPress(buttonPressed, ledNum)) {
+    if (recordedPattern[count] != buttonPress(buttonPressed, ledNum, 1)) {
       tryAgain(1);
       return;
     }
@@ -163,16 +177,31 @@ void puzzle1(bool* p1Status, int* ledNum, int* buttonPressed) {
 
 }
 
-void puzzle2(bool* p2Status) {
+void puzzle2(bool* p2Status, int* ledNum, int* buttonPressed) {
   myServo.write(180);
   printLCD("Puzzle 2 -", "Einstein Logic");
   
   printLCD("Arrange the", "colored buttons");
-  printLCD("according to", "following saying");
+  printLCD("according to", "this saying");
 
-  printLCD("Red is definitely", "not first.");
-  printLCD("Blue is behind", "close green.");
+  printLCD("Red is certainly", "not first.");
+  printLCD("Blue is close", "behind green.");
   printLCD("Yellow is far", "from red.");
+
+  printLCD("Press the", "buttons in order");
+
+  int pattern[] = {3, 1, 2, 0};
+
+  for (int count = 0; count < 4; count++) {
+    if (pattern[count] != buttonPress(buttonPressed, ledNum, 2)) {
+      tryAgain(2);
+      return;
+    }
+  }
+
+  *p2Status = true;
+  myServo.write(0);
+  printLCD("Room 2 Completed-", "Einstein Logic");
 }
 
 
