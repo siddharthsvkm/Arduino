@@ -61,7 +61,7 @@ void loop() {
   if (!p1Status) {
     puzzle1(&p1Status, leds, buttonPressed);
   }
-  if (!p2Status) {
+  else if (!p2Status) {
     puzzle2(&p2Status, leds, buttonPressed);
   }
   // puzzle3(p3Status);
@@ -94,9 +94,9 @@ void printLCD(String statement1, String statement2) {
 
 void lightsOff(int* ledPins) {
   digitalWrite(ledPins[0], LOW);
-  digitalWrite(ledPins[0], LOW);
-  digitalWrite(ledPins[0], LOW);
-  digitalWrite(ledPins[0], LOW);
+  digitalWrite(ledPins[1], LOW);
+  digitalWrite(ledPins[2], LOW);
+  digitalWrite(ledPins[3], LOW);
 }
 
 int buttonPress(int* buttons, int* ledPins, int mode) {
@@ -107,13 +107,17 @@ int buttonPress(int* buttons, int* ledPins, int mode) {
         button = count;
         digitalWrite(ledPins[button], HIGH);
         while (digitalRead(buttonPressed[count]) == HIGH) {
-
+          delay(10);
         }
         digitalWrite(ledPins[button], LOW);
         delay(20);
         return button;
     } else if (digitalRead(buttonPressed[count]) == HIGH && mode == 2) {
+        button = count;
         digitalWrite(ledPins[button], HIGH);
+        while (digitalRead(buttonPressed[count]) == HIGH) {
+          delay(10);
+        }
         delay(20);
         return button;
     }
@@ -173,7 +177,7 @@ void puzzle1(bool* p1Status, int* ledNum, int* buttonPressed) {
   }
   *p1Status = true;
   myServo.write(0);
-  printLCD("Room 1 Completed-", "Memory Test");
+  printLCD("Room 1 Complete-", "Memory Test");
 
 }
 
@@ -181,7 +185,7 @@ void puzzle2(bool* p2Status, int* ledNum, int* buttonPressed) {
   myServo.write(180);
   printLCD("Puzzle 2 -", "Einstein Logic");
   
-  printLCD("Arrange the", "colored buttons");
+  printLCD("Order the", "colored buttons");
   printLCD("according to", "this saying");
 
   printLCD("Red is certainly", "not first.");
@@ -201,13 +205,13 @@ void puzzle2(bool* p2Status, int* ledNum, int* buttonPressed) {
 
   *p2Status = true;
   myServo.write(0);
-  printLCD("Room 2 Completed-", "Einstein Logic");
+  printLCD("Room 2 Complete-", "Einstein Logic");
 }
 
 
-// void puzzle3(int p3Status) {
+void puzzle3(bool* p3Status, int* ledNum, int* buttonPressed) {
   
-// }
+}
 // void puzzle4(int p4Status) {
   
 // }
