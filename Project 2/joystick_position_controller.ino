@@ -5,6 +5,7 @@ LiquidCrystal lcd(rs, e, d4, d5, d6, d7);
 
 int joystickYPin = A1;
 int joystickXPin = A0;
+
 int greenPin = 22;
 int purplePin = 23;
 int bluePin = 24;
@@ -13,6 +14,7 @@ int rgbPinR1 = 7;
 
 int xPos;
 int yPos;
+
 String xDirectionList[] = {"Left", "Right", ""};
 String yDirectionList[] = {"Down", "Up", ""};
 
@@ -27,10 +29,8 @@ void setup() {
   }
 
   lcd.begin(16, 2);
-  lcd.print("JoystickPosition");
-  lcd.setCursor(0,1);
-  lcd.print("Controller");
-  delay(6000);
+
+  printLCD("JoystickPosition", "Controller", 2, 4000);
 }
 
 void loop() {
@@ -44,11 +44,13 @@ void loop() {
   String yDirection = yDirectionList[(yVal > 0) + 2 * (yVal == 0)];
   String directionMoving = "Moving " + xDirection  + yDirection;
 
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print(positionStatement);
-  lcd.setCursor(0,1);
-  lcd.print(directionMoving);
+  if (xVal != 0 || yVal != 0) {
+    lcd.print(directionMoving);
+    printLCD(positionStatement, directionMoving, 20);
+  } else {
+    printLCD(positionStatement, "", 20);
+  }
+
   colorDirections((xVal > 0) + 2 * (xVal == 0), (yVal < 0) + 2 * (yVal == 0));
   delay(150);
 }
@@ -87,5 +89,16 @@ void colorDirections(int xDirection, int yDirection) {
     analogWrite(rgbPinR1 - 3, 0);
     analogWrite(rgbPinR1 - 4, 0);
     analogWrite(rgbPinR1 - 5, 0);
+  }
+}
+
+void printLCD(String statement1, String statement2, int mode, int delayTime) {
+  if (mode == 2) {
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print(statement1);
+    lcd.setCursor(0,1);
+    lcd.print(statement2);
+    delay(delayTime);
   }
 }
