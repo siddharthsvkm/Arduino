@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "Siddharth Sivakumar",
+  "author": "Sid S",
   "editor": "wokwi",
   "parts": [
     { "type": "wokwi-breadboard", "id": "bb1", "top": -41.4, "left": -160.4, "attrs": {} },
@@ -122,7 +122,6 @@
       "rotate": 90,
       "attrs": { "value": "1000" }
     },
-    { "type": "wokwi-potentiometer", "id": "pot1", "top": 46.7, "left": 38.2, "attrs": {} },
     {
       "type": "wokwi-resistor",
       "id": "r11",
@@ -142,7 +141,6 @@
     [ "mega:8", "lcd1:D7", "yellow", [ "v-57.6", "h-260.1" ] ],
     [ "mega:9", "lcd1:D6", "yellow", [ "v-48", "h-260.1" ] ],
     [ "mega:10", "lcd1:D5", "yellow", [ "v-38.4", "h-259.6" ] ],
-    [ "pot1:SIG", "lcd1:V0", "cyan", [ "v9.6", "h-172.9" ] ],
     [ "r10:2", "mega:22", "green", [ "h96", "v74.5" ] ],
     [ "r7:2", "mega:23", "purple", [ "h0", "v1.2", "h182.4", "v259.2" ] ],
     [ "r5:1", "mega:24", "blue", [ "v96", "h48", "h163.2", "v85.45" ] ],
@@ -155,8 +153,6 @@
     [ "bb1:bn.3", "lcd1:RW", "black", [ "v0" ] ],
     [ "joystick1:VCC", "bb1:bp.5", "red", [ "v19.2", "h-9.6" ] ],
     [ "joystick1:GND", "bb1:bn.18", "black", [ "v19.2", "h48" ] ],
-    [ "pot1:GND", "bb1:bn.17", "black", [ "v0" ] ],
-    [ "pot1:VCC", "bb1:bp.19", "red", [ "v0" ] ],
     [ "bb1:43b.j", "bb1:bn.35", "black", [ "v0" ] ],
     [ "bb1:54b.j", "bb1:bn.44", "black", [ "v0" ] ],
     [ "mega:11", "lcd1:D4", "yellow", [ "v-28.8", "h-259.6" ] ],
@@ -169,10 +165,9 @@
     [ "mega:2", "r3:2", "blue", [ "v-19.2", "h226.4", "v-211.2" ] ],
     [ "mega:3", "r2:2", "green", [ "v-28.8", "h226.3", "v-192" ] ],
     [ "mega:4", "r1:2", "orange", [ "v-38.4", "h226.2", "v-172.8" ] ],
+    [ "bb1:tn.25", "bb1:43t.d", "black", [ "v0" ] ],
     [ "led1:A", "bb1:49b.i", "", [ "$bb" ] ],
     [ "led1:C", "bb1:48b.i", "", [ "$bb" ] ],
-    [ "led2:A", "bb1:49t.e", "", [ "$bb" ] ],
-    [ "led2:C", "bb1:48t.e", "", [ "$bb" ] ],
     [ "led3:A", "bb1:42b.f", "", [ "$bb" ] ],
     [ "led3:C", "bb1:43b.f", "", [ "$bb" ] ],
     [ "led4:A", "bb1:55b.f", "", [ "$bb" ] ],
@@ -202,13 +197,12 @@
     [ "r8:2", "bb1:44t.b", "", [ "$bb" ] ],
     [ "r9:1", "bb1:36t.a", "", [ "$bb" ] ],
     [ "r9:2", "bb1:42t.a", "", [ "$bb" ] ],
-    [ "pot1:GND", "bb1:22b.j", "", [ "$bb" ] ],
-    [ "pot1:SIG", "bb1:23b.j", "", [ "$bb" ] ],
-    [ "pot1:VCC", "bb1:24b.j", "", [ "$bb" ] ],
+    [ "r10:1", "bb1:49b.i", "", [ "$bb" ] ],
     [ "r11:1", "bb1:15b.g", "", [ "$bb" ] ],
     [ "r11:2", "bb1:bp.11", "", [ "$bb" ] ],
-    [ "bb1:tn.25", "bb1:43t.d", "black", [ "v0" ] ],
-    [ "r10:1", "bb1:49b.i", "", [ "$bb" ] ]
+    [ "led2:A", "bb1:49t.e", "", [ "$bb" ] ],
+    [ "led2:C", "bb1:48t.e", "", [ "$bb" ] ],
+    [ "lcd1:V0", "bb1:bp.1", "red", [ "v0" ] ]
   ],
   "dependencies": {}
 }
