@@ -4,9 +4,13 @@
 #include <RTClib.h>
 
 RTC_DS1307 myRTC;
+
 Servo myServo;
+int servoPin = 23;
+
 int rs = 13, e = 12, d4 = 11, d5 = 10, d6 = 9, d7 = 8;
 LiquidCrystal myLCD(rs, e, d4, d5, d6, d7);
+
 const int row = 4, col = 4;
 char safeKeys[row][col] = {
   { '1', '2', '3', 'A' },
@@ -18,16 +22,18 @@ uint8_t colPins[col] = {47, 49, 51, 53};
 uint8_t rowPins[row] = {39, 41, 43, 45};
 Keypad safeKeypad = Keypad(makeKeymap(safeKeys), rowPins, colPins, row, col);
 
-int servoPin = 23;
-int buzzerPin = 2;
+int buzzerPin = 4;
+
+int colorPins[] = {5, 6, 7};
+int numColors = sizeof(colorPins) / sizeof(colorPins[0]);
 
 bool lockStatus;
 char pinCode[4];
-bool menuScreen = false;
+bool menuScreen = true;
 
 void setup() {
-  for (int color = 5; color <= 7; color++) {
-    pinMode(color, OUTPUT);
+  for (int num = 0; num < numColors; num++) {
+    pinMode(colorPins[num], OUTPUT);
   }
   myServo.attach(servoPin);
   myServo.write(90);
@@ -42,13 +48,13 @@ void loop() {
 }
 
 void menu() {
-  if (!menuScreen) {
+  if (menuScreen) {
     printLCD("SafeLock Menu", "Press '#' option", 100);
-    menuScreen = true;
+    menuScreen = false;
   }
   char continueMenu = safeKeypad.getKey();
   if (continueMenu == '#') {
-    menuScreen = false;
+    menuScreen = true;
     if (lockStatus) {
       printLCD("A-Unlock|B-Back", "C-Change|D-Date", 10);
     } else {
@@ -88,11 +94,11 @@ void enterPin(bool reset, bool required) {
   char input;
   String pinInterface;
 
-  if (!reset) {
+  if (reset) {
+    printLCD("Set 4-Digit PIN", "     [____]", 10);
+  } else {
     counter += 4;
     printLCD("Confirm Lock PIN", "     [____]", 10);
-  } else {
-    printLCD("Set 4-Digit PIN", "     [____]", 10);
   }
   
   while (counter < 8) {
@@ -153,7 +159,7 @@ void printPINInterface(int count) {
 bool incorrectAttempt(int* incorrect) {
   int left = *incorrect % 4;
   if (left == 3) {
-    printLCD("Incorrect PIN", "10 Sec Lockout", 10000);
+    printLCD("Incorrect PIN", "5 Sec Lockout", 5000);
     printLCD("Navigate to open", "option again", 3000);
     return false;
   } else {
