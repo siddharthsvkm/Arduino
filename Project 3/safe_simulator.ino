@@ -133,8 +133,8 @@ void enterPin(bool reset, bool required) {
     delay(30);
   }
   if (!required && !reset) {
-
-  } else if (unlock && !required) {
+    lockSafe(false);
+  } else if (unlock) {
     lockSafe(false);
   } else {
     lockSafe(true);
@@ -237,6 +237,7 @@ void buzzerSound() {//int* status) {
 // Press '*'
 void lockSafe(bool lock) {
   if (lock) {
+    printLCD("Locked Safe", "", 10);
     lockStatus = true;
     myServo.write(0);
     lockColor('r');
