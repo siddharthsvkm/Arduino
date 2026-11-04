@@ -210,7 +210,17 @@ void puzzle2(bool* p2Status, int* ledNum, int* buttonPressed) {
 
 
 void puzzle3(bool* p3Status, int* ledNum, int* buttonPressed) {
+  myServo.write(180);
+  String hiddenMessage = "d3c0d345";
+  //                {d}, 
+  String printBin1 = "1101 " + "" + "" + "11";
+  String printBin2 = "01 " + "0011 " + "" + "";
+  printLCD("Puzzle 3 -", "Hex to Bin Decoder");
   
+  printLCD("Convert the", "binary numbers");
+  printLCD("Decode to find", "the hidden message");
+  printLCD(printBin1, printBin2);
+  // message is d3c0d345
 }
 // void puzzle4(int p4Status) {
   
