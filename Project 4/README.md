@@ -12,7 +12,7 @@ Puzzle 1 - Memory Test
 Puzzle 2 - Einstein Logic
 
 
-Puzzle 3 - Hexadecimal Decoder
+Puzzle 3 - Binary to Hexadecimal Decoder
 
 
 Puzzle 4 - Switch Logic
