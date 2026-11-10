@@ -30,6 +30,6 @@ Components:
 ||Project Name|Start Date|Modified Date|Status|
 |:---|:---|:---|:---|:---|
 |Project 1|Smart Rock, Paper, Scissors Game|July 12, 2026|November 7, 2026|Debugging(finished learning C to debug)|
-|Project 2|Joystick Position/LED Control|July 23, 2026|October 31, 2026|Completed|
-|Project 3|Interactive Safe Lock Simulator|July 25, 2026|October 31, 2026|Debugging|
-|Project 4|Escape Room|August 10, 2026|October 31, 2026|Adding more challenges|
+|Project 2|Joystick Position/LED Control|July 23, 2026|November 3, 2026|Completed|
+|Project 3|Interactive Safe Lock Simulator|July 25, 2026|November 2, 2026|Debugging|
+|Project 4|Escape Room|August 10, 2026|November 4, 2026|Adding more challenges|
