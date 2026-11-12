@@ -5,7 +5,7 @@
 
 // set up servo and lcd display
 Servo myServo;
-int servoPin = 7;
+int servoPin = 6;
 
 LiquidCrystal lcd(13, 12, 11, 10, 9, 8);
 
@@ -25,9 +25,8 @@ Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
 
 
-int buzzerPin = 6;
-int buttonPressed[] = {24, 25, 30, 31};
-int leds[] = {26, 27, 28, 29};
+int buzzerPin = 7;
+int buttonPressed[] = {5, 4, 3, 2};
 
 bool p1Status = false;
 bool p2Status = false;
@@ -44,9 +43,7 @@ bool p5Status = false;
 void setup() {
   for (int pressed = 0; pressed < 4; pressed++) {
     pinMode(buttonPressed[pressed], INPUT);
-  }
-  for (int led = 0; led < 4; led++) {
-    pinMode(leds[led], OUTPUT);
+    pinMode(buttonPressed[pressed], OUTPUT)
   }
 
   randomSeed(analogRead(A1));
@@ -57,12 +54,12 @@ void setup() {
 }
 
 void loop() {
-  lightsOff(leds);
+  lightsOff(buttonPressed);
   if (!p1Status) {
-    puzzle1(&p1Status, leds, buttonPressed);
+    puzzle1(&p1Status, buttonPressed, buttonPressed);
   }
   else if (!p2Status) {
-    puzzle2(&p2Status, leds, buttonPressed);
+    puzzle2(&p2Status, buttonPressed, buttonPressed);
   }
   // puzzle3(p3Status);
   // puzzle4(p4Status);
@@ -83,12 +80,12 @@ void printLCD(String statement1, String statement2) {
   delay(3000);
 }
 
-// void completedRoom(int roomStatus, bool ledStatus) {
-//   int leds[] = {36, 34};
-//   if (ledStatus) {
-//     analogWrite(leds[roomStatus], 255);
+// void completedRoom(int roomStatus, bool buttonPressedtatus) {
+//   int buttonPressed[] = {36, 34};
+//   if (buttonPressedtatus) {
+//     analogWrite(buttonPressed[roomStatus], 255);
 //   } else {
-//     analogWrite(leds[roomStatus], 0);
+//     analogWrite(buttonPressed[roomStatus], 0);
 //   }
 // }
 
@@ -211,15 +208,14 @@ void puzzle2(bool* p2Status, int* ledNum, int* buttonPressed) {
 
 void puzzle3(bool* p3Status, int* ledNum, int* buttonPressed) {
   myServo.write(180);
-  String hiddenMessage = "d3c0d345";
-  //                {d}, 
-  String printBin1 = "1101 " + "" + "" + "11";
-  String printBin2 = "01 " + "0011 " + "" + "";
+  String hiddenMessage = "d3c0d34";
+  //String printBin1 = "1101 " + "0011 " + "1011" + "11";
+  //String printBin2 = "01 " + "0011 " + "0011 " + "0100";
   printLCD("Puzzle 3 -", "Hex to Bin Decoder");
   
   printLCD("Convert the", "binary numbers");
   printLCD("Decode to find", "the hidden message");
-  printLCD(printBin1, printBin2);
+  //printLCD(printBin1, printBin2);
   // message is d3c0d345
 }
 // void puzzle4(int p4Status) {
