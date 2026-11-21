@@ -25,6 +25,13 @@ Puzzle 5 - Sequence Predictor
 Project URL: https://wokwi.com/projects/470846474007212033
 
 
+|Progress|Date|
+|:---|:---|
+|Fixed Room 1|10/24/2026|
+|Added Room 2|10/24/2026|
+|Finished Room 2|10/25/2026|
+|Added Room 3|10/25/2026|
+|Remodeled switches for both I/O with only 1 GPIO|11/11/2026|
 
 
 ## Used Components:
@@ -40,12 +47,4 @@ Project URL: https://wokwi.com/projects/470846474007212033
 
 ## Reflection
 I had to think about how I would structure my program. I decided to separate each puzzle into its own function. In the loop() function, I would put each of the puzzles, meaning that the loop() function would keep repeating if one or more puzzles wasn't complete.
-
-|Progress|Date|
-|:---|:---|
-|Fixed Room 1|10/24/2026|
-|Added Room 2|10/24/2026|
-|Finished Room 2|10/25/2026|
-|Added Room 3|10/25/2026|
-|||
 
