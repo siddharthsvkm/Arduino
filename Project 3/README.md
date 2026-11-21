@@ -1,7 +1,7 @@
 # Digital SafeLock Simulator
 Siddharth Sivakumar (@siddharthsvkm)
 
-July 25, 2026
+July 25, 2026 (start date
 
 Emulated using Wokwi
 
@@ -9,6 +9,13 @@ Project URL: https://wokwi.com/projects/470832657989922817
 
 ## Summary
 Digital SafeLock Simulator is an interactive safe that mimics the functionality of a real safe without the physical mechanism and box. The safe has a menu that has the following functions: unlock/lock, change password, show date.
+
+|Progress|Date|
+|:---|:---|
+|Created setup and organized components on breadboard||
+|Added time/date functionality||
+|Debugging menu problems||
+|Finishing up final touches|11/21/2026|
 
 ## Used Components:
 - 1x MEGA Controller Board
