@@ -22,19 +22,20 @@ uint8_t colPins[col] = {47, 49, 51, 53};
 uint8_t rowPins[row] = {39, 41, 43, 45};
 Keypad safeKeypad = Keypad(makeKeymap(safeKeys), rowPins, colPins, row, col);
 
-int buzzerPin = 4;
 
 int colorPins[] = {5, 6, 7};
 int numColors = sizeof(colorPins) / sizeof(colorPins[0]);
 
 bool lockStatus;
 char pinCode[4];
-bool menuScreen = true;
+bool startMenu = false;
+bool repeat = true;
 
 void setup() {
   for (int num = 0; num < numColors; num++) {
     pinMode(colorPins[num], OUTPUT);
   }
+  myRTC.begin();
   myServo.attach(servoPin);
   myServo.write(90);
   myLCD.begin(16,2);
@@ -48,13 +49,15 @@ void loop() {
 }
 
 void menu() {
-  if (menuScreen) {
+  if (!startMenu && repeat) {
     printLCD("SafeLock Menu", "Press '#' option", 100);
-    menuScreen = false;
+    repeat = false;
   }
+
   char continueMenu = safeKeypad.getKey();
   if (continueMenu == '#') {
-    menuScreen = true;
+    repeat = true;
+    startMenu = true;
     if (lockStatus) {
       printLCD("A-Unlock|B-Back", "C-Change|D-Date", 10);
     } else {
@@ -65,24 +68,23 @@ void menu() {
       input = safeKeypad.getKey();
       // Lock the safe
       if (input == '*') {
-        lockSafe(true);
-        printLCD("Locked Safe", "", 10);
-        break;
+        touchSafe(true);
+        return;
       }
       // Open the safe
       else if (input == 'A') {
         enterPin(false, true);
-        break;
+        return;
       } else if (input == 'B') {
         return;
       } else if (input == 'C') {
         enterPin(false, false);
         enterPin(true, true);
         printLCD("Changed Password", "     [****]", 1000);
-        break;
+        return;
       } else if (input == 'D') {
         printDate();
-        break;
+        return;
       }
     }
   }
@@ -133,11 +135,11 @@ void enterPin(bool reset, bool required) {
     delay(30);
   }
   if (!required && !reset) {
-    lockSafe(false);
+    touchSafe(false);
   } else if (unlock) {
-    lockSafe(false);
+    touchSafe(false);
   } else {
-    lockSafe(true);
+    touchSafe(true);
   }
 }
 
@@ -163,7 +165,7 @@ bool incorrectAttempt(int* incorrect) {
     printLCD("Navigate to open", "option again", 3000);
     return false;
   } else {
-    printLCD("Incorrect PIN", String(3 - left) + " Attempts Left", 4000);
+    printLCD("Incorrect PIN", String(3 - left) + " Attempts Left", 2000);
     return true;
   }
 }
@@ -220,37 +222,23 @@ void printDate(){
 }
 
 
-
-void buzzerSound() {//int* status) {
-  for (int count = 0; count < 4; count ++) {
-      digitalWrite(buzzerPin, HIGH);
-      tone(buzzerPin, 1050);
-      delay(250);
-
-      digitalWrite(buzzerPin, LOW);
-      noTone(buzzerPin);
-      delay(250);
-    
-    }
-}
-
 // Press '*'
-void lockSafe(bool lock) {
+void touchSafe(bool lock) {
   if (lock) {
     printLCD("Locked Safe", "", 10);
     lockStatus = true;
-    myServo.write(0);
-    lockColor('r');
+    myServo.write(180);
+    safeColor('r');
   } else {
     printLCD("Unlocked Safe", "", 10);
     lockStatus = false;
-    myServo.write(180);
-    lockColor('g');
+    myServo.write(0);
+    safeColor('g');
   }
 }
 
 
-void lockColor(char color) {
+void safeColor(char color) {
   int red = 7, green = 6, blue = 5;
   if (color == 'r') {
     analogWrite(red, 255);
@@ -267,6 +255,7 @@ void lockColor(char color) {
   } 
 }
 
+
 void printLCD(String statement1, String statement2, int delayTime) {
   myLCD.clear();
   myLCD.setCursor(0,0);
@@ -275,3 +264,19 @@ void printLCD(String statement1, String statement2, int delayTime) {
   myLCD.print(statement2);
   delay(delayTime);
 }
+
+
+// Planned to include buzzer but sounds do not 
+// match actual opening and locking sounds of a safe
+// void buzzerSound() {
+//   for (int count = 0; count < 4; count ++) {
+//       digitalWrite(buzzerPin, HIGH);
+//       tone(buzzerPin, 1050);
+//       delay(250);
+
+//       digitalWrite(buzzerPin, LOW);
+//       noTone(buzzerPin);
+//       delay(250);
+    
+//     }
+// }
