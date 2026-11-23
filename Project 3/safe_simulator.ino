@@ -36,7 +36,9 @@ void setup() {
   for (int num = 0; num < numColors; num++) {
     pinMode(colorPins[num], OUTPUT);
   }
-  myRTC.begin();
+  if (!myRTC.begin()) {
+    printLCD("RTC not found", "Check wiring", 10000);
+  }
   myServo.attach(servoPin);
   myServo.write(90);
   myLCD.begin(16,2);
@@ -50,12 +52,10 @@ void setup() {
   }
 }
 
-
 void loop() {
   menu();
   delay(30);
 }
-
 
 void menu() {
   if (!startMenu && repeatText) {
@@ -80,10 +80,13 @@ void menu() {
         touchSafe(true);
         return;
 
-      } else if (input == 'A' && lockStatus && enterPin(false, true)) { // Open the safe
-        touchSafe(false);
-        return;
-
+      } else if (input == 'A' && lockStatus) { // Open the safe
+        if (enterPin(false, true)) {
+          touchSafe(false);
+          return;
+        } else {
+          return;
+        }
       } else if (input == 'B') {
         return;
 
@@ -100,7 +103,6 @@ void menu() {
     }
   }
 }
-
 
 bool enterPin(bool reset, bool required) {
   bool unlock = true;
@@ -138,17 +140,17 @@ bool enterPin(bool reset, bool required) {
         printLCD("Confirm Lock PIN", "     [____]", 200);
       }
     } else if (input == 'B' && !required) {
-        unlock = false;
-        break;
+        return false;
     } else if (input == 'B' && reset) {
       counter = 0;
       printLCD("Set 4-Digit PIN", "     [____]", 200);
     }
     delay(30);
   }
-  return true;
+  if (counter == 8) {
+    return true;
+  }
 }
-
 
 void printPINInterface(int count) {
   myLCD.setCursor(0,1);
@@ -166,10 +168,10 @@ void printPINInterface(int count) {
 
 
 bool incorrectAttempt(int* incorrect) {
-  int left = *incorrect % 4;
+  int left = *incorrect;
   if (left == 3) {
     printLCD("Incorrect PIN", "5 Sec Lockout", 5000);
-    printLCD("Navigate to open", "option again", 3000);
+    printLCD("Navigating back", "to start menu", 3000);
     return false;
   } else {
     printLCD("Incorrect PIN", String(3 - left) + " Attempts Left", 2000);
@@ -177,58 +179,35 @@ bool incorrectAttempt(int* incorrect) {
   }
 }
 
-
-void printDate(){
+void printDate() {
+  int prevSec = -1;
+  DateTime myClock;
   char input = safeKeypad.getKey();
-  DateTime clock;
+  char dateStatement[17];
+  char timeStatement[17];
+
   while (input != 'B') {
     input = safeKeypad.getKey();
-    clock = myRTC.now();
-    int hour = clock.hour();
-    int minute = clock.minute();
-    int second = clock.second();
-
-    String timeStatement = "Time ";
-    if (hour <= 9 ){
-      timeStatement += "0";
-    }
-    timeStatement += String(hour);
-    timeStatement += ":";
-    if (minute <= 9 ){
-      timeStatement += "0";
-    }
-    timeStatement += String(minute);
-    timeStatement += ":";
-    if (second <= 9 ){
-      timeStatement += "0";
-    } 
-    timeStatement += String(second);
-
-    int day = clock.day();
-    int month = clock.month();
-    int year = clock.year();
-
-    String dateStatement = "Date ";
-
-    if (month <= 9 ){
-      dateStatement += "0";
-    }
-    dateStatement += String(month);
-    dateStatement += "/";
+    myClock = myRTC.now();
     
-    if (day <= 9 ){
-      dateStatement += "0";
-    }
-    dateStatement += String(day);
+    if (myClock.second() != prevSec){
+      snprintf(dateStatement, sizeof(dateStatement), "Date %02d/%02d/%02d", myClock.month(), myClock.day(), myClock.year());
+      snprintf(timeStatement, sizeof(timeStatement), "Time %02d:%02d:%02d", myClock.hour(), myClock.minute(), myClock.second());
     
-  
-    dateStatement += "/";
-    dateStatement += String(year);
+      myLCD.setCursor(0, 0);
+      myLCD.print(dateStatement);
+      myLCD.print("   ");
 
-    printLCD(dateStatement, timeStatement, 950);
-  }  
+      myLCD.setCursor(0, 1);
+      myLCD.print(timeStatement);
+      myLCD.print("   ");
+
+      prevSec = myClock.second();
+    }
+
+    delay(45);
+  }
 }
-
 
 // Press '*'
 void touchSafe(bool lock) {
@@ -272,3 +251,5 @@ void printLCD(String statement1, String statement2, int delayTime) {
   myLCD.print(statement2);
   delay(delayTime);
 }
+//     }
+// }
