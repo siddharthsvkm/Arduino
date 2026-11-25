@@ -30,7 +30,7 @@ void setup() {
 
   lcd.begin(16, 2);
 
-  printLCD("JoystickPosition", "Controller", 2, 4000);
+  printLCD("JoystickPosition", "Controller", 4000);
 }
 
 void loop() {
@@ -92,13 +92,29 @@ void colorDirections(int xDirection, int yDirection) {
   }
 }
 
-void printLCD(String statement1, String statement2, int mode, int delayTime) {
-  if (mode == 2) {
-    lcd.clear();
-    lcd.setCursor(0,0);
-    lcd.print(statement1);
-    lcd.setCursor(0,1);
-    lcd.print(statement2);
-    delay(delayTime);
+void printLCD(String statement1, String statement2, int delayTime) {
+  char finalStatement1[17];
+  char finalStatement2[17];
+  for (int x = 0; x < 16; x++) {
+    if (statement1[x] != ' ' && statement1[x] != '\0') {
+      finalStatement1[x] = statement1[x];
+    } else {
+      finalStatement1[x] = ' ';
+    }
+
+    if (statement2[x] != ' ' && statement2[x] != '\0') {
+      finalStatement2[x] = statement2[x];
+    } else {
+      finalStatement2[x] = ' ';
+    }
   }
+
+  finalStatement1[16] = '\0';
+  finalStatement2[16] = '\0';
+
+  lcd.setCursor(0,0);
+  lcd.print(finalStatement1);
+  lcd.setCursor(0,1);
+  lcd.print(finalStatement2);
+  delay(delayTime);
 }
