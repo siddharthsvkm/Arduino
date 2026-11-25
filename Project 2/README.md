@@ -1,7 +1,7 @@
 # Joystick Position and LED Controller
 Siddharth Sivakumar (@siddharthsvkm)
 
-July 27, 2026 (start date)
+July 27, 2026 (start date), November 25, 2026 (end date)
 
 Emulated using Wokwi
 
@@ -15,7 +15,7 @@ This project uses a joystick to control a virtual position and a set of LEDs on 
 |Originally Complete|07/27/2026|
 |Remodeling|10/31/2026|
 |Currently fixing flickering screen|10/31/2026|
-|||
+|Fixed flickering screen|11/25/2026|
 
 ## Used Components:
 - 1x MEGA Controller Board
